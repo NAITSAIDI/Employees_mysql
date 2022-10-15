@@ -70,7 +70,25 @@ FROM
     dept_manager;
     
 /* 107 Order by*/ 
-    
+Select * FROM employees ORDER BY emp_no DESC;
+Select * FROM employees ORDER BY  first_name, last_name DESC;
+/* Select all data from the “employees” table, ordering it by “hire date” in descending order*/ 
+Select * FROM employees ORDER BY hire_date DESC;
+/* Group By*/ 
+ 
+ SELECT first_name FROM employees GROUP BY first_name;
+ SELECT first_name, count(first_name) AS names_count from employees group by first_name order by first_name desc;
+/* Write a query that obtains two columns. The first column must contain annual salaries higher than 80,000 dollars.*/
+/*The second column, renamed to “emps_with_same_salary”, must show the number of employees contracted to that salary.*/
+/* Lastly, sort the output by the first column.*/
+Select * FROM employees;
+SELECT salary, count(salary) As emps_with_same_salary FROM salaries where salary > 80000 GROUP BY salary order by salary;
+SELECT salary, COUNT(emp_no) AS emps_with_same_salary FROM salaries WHERE salary > 80000 GROUP BY salary ORDER BY salary;
+/* USE having the same as where, but should be used whenever there are aggregate functions iun the query*/ 
+SELECT first_name, count(first_name) AS names_count from employees group by first_name HAVING COUNT(first_name) >250 order by first_name desc;
+/* Select all employees whose average salary is higher than $120,000 per annum.*/ 
+Select * FROM employees.salaries HAVING salary > 120000;  # where could have been 
+SELECT emp_no, AVR(salary),FROM salaries GROUP BY emp_no HAVING AVG(salary) > 120000 ORDER BY emp_no;
 
  
 
